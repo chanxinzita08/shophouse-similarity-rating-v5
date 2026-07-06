@@ -1,0 +1,283 @@
+/* style.css — participant-facing similarity rating pretest. No condition,
+   cluster, screening_score, or similarity-score text is ever rendered here;
+   keep it that way when editing. */
+
+:root {
+  --bg: #808080;
+  --text: #f0f0f0;
+  --accent: #4a90d9;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+
+.jspsych-display-element {
+  background: var(--bg);
+}
+
+.jspsych-content {
+  max-width: 1000px;
+}
+
+/* ── side-by-side facade pair ── */
+.stim-pair {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.facade-img {
+  max-height: 480px;
+  max-width: 440px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #1c1c1e;
+}
+
+.question-text {
+  font-size: 22px;
+  margin: 16px 0 24px;
+}
+
+/* ── 1-7 similarity rating: clickable buttons, not keyboard ── */
+.likert-scale {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.likert-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  padding: 10px 6px;
+  font-size: 20px;
+  font-family: inherit;
+  color: #fff;
+  background: #333;
+  border: 2px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.likert-btn:hover {
+  border-color: var(--accent);
+}
+
+.likert-btn.selected {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.likert-btn .likert-label {
+  font-size: 12px;
+  color: #cfd3d8;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.likert-btn.selected .likert-label {
+  color: #f0f0f0;
+}
+
+/* ── progress indicator + Back/Next navigation ── */
+.progress-text {
+  font-size: 14px;
+  color: #9aa0a6;
+  margin-bottom: 8px;
+}
+
+/* ── jump-to-trial grid, grouped in batches of CONFIG.PROGRESS_GROUP_SIZE ── */
+.group-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.group-btn {
+  font-size: 11px;
+  padding: 3px 7px;
+  background: #2b2b2d;
+  color: #cfd3d8;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.group-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.trial-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  max-width: 480px;
+  margin: 0 auto 18px;
+}
+
+.trial-square {
+  width: 28px;
+  height: 28px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2b2b2d;
+  color: #cfd3d8;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.trial-square.answered {
+  background: #3a4a3a;
+  border-color: #4a6a4a;
+}
+
+.trial-square.current {
+  border-color: var(--accent);
+  border-width: 2px;
+  color: #fff;
+}
+
+.trial-square.unreached {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.nav-buttons button:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.secondary-btn {
+  background: #444;
+}
+
+/* ── instructions / welcome / end pages ── */
+.info-page {
+  text-align: left;
+  line-height: 1.6;
+  font-size: 18px;
+  background: #1c1c1e;
+  color: #f0f0f0;
+  padding: 30px 40px;
+  border-radius: 10px;
+  max-width: 720px;
+  margin: 40px auto;
+  cursor: pointer; /* whole box advances the page, not just the Continue button */
+}
+
+.info-page h2 {
+  margin-top: 0;
+}
+
+.info-page .continue-hint {
+  margin-top: 30px;
+  color: #9aa0a6;
+  font-size: 14px;
+}
+
+.info-page strong.emphasis {
+  color: #ffd479;
+}
+
+/* ── survey form (participant info) ── */
+.jspsych-survey-html-form {
+  background: #1c1c1e;
+  color: #f0f0f0;
+  padding: 30px 40px;
+  border-radius: 10px;
+  max-width: 720px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.jspsych-survey-html-form label {
+  margin-right: 4px;
+}
+
+.jspsych-survey-html-form p {
+  margin: 16px 0;
+}
+
+.jspsych-survey-html-form input[type="text"],
+.jspsych-survey-html-form input[type="number"] {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background: #2b2b2d;
+  color: #fff;
+}
+
+button.jspsych-btn {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* ── mobile: stack the facade pair, shrink buttons to fit narrow screens ── */
+@media (max-width: 600px) {
+  .stim-pair {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .facade-img {
+    max-height: 260px;
+    max-width: 90vw;
+  }
+
+  .likert-scale {
+    gap: 8px;
+  }
+
+  .likert-btn {
+    width: 40px;
+    padding: 8px 2px;
+    font-size: 16px;
+  }
+
+  .likert-btn .likert-label {
+    display: none; /* endpoint/midpoint labels don't fit at this width; the number + instructions text still convey the scale */
+  }
+
+  .trial-square {
+    width: 24px;
+    height: 24px;
+  }
+
+  .info-page, .jspsych-survey-html-form {
+    padding: 20px;
+    margin: 16px auto;
+  }
+}
