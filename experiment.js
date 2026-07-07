@@ -61,6 +61,7 @@ const STRINGS = {
 
     instructionsTitle: "Instructions",
     instructionsBody1: 'On each trial you will see two shophouse facade photographs side by side. Please rate: <em>"How similar are these two shophouse facades as architectural types?"</em>',
+    instructionsBody1b: "This is really about your overall impression of stylistic similarity — you can base your judgement on whatever aspects you personally think matter most (for example colours, materials, decorative details, proportions, or anything else that stands out to you).",
     instructionsBody2: "Click a number from <strong>1 to 7</strong>: 1 = not similar at all &nbsp;&nbsp; 4 = moderate / unsure &nbsp;&nbsp; 7 = highly similar",
     instructionsBody3: 'You can click a different number to change your answer before confirming — click <strong>Next</strong> once you\'re happy with your choice. You can also click <strong>Back</strong> at any time to revisit an earlier pair and change your answer.',
     instructionsBody4a: "Please use the full rating scale whenever appropriate, rather than giving the same score repeatedly.",
@@ -110,6 +111,7 @@ const STRINGS = {
 
     instructionsTitle: "任务说明",
     instructionsBody1: "每一题您将看到两张店屋立面照片并排显示。请评价：<em>“这两张店屋立面在建筑类型上有多相似？”</em>",
+    instructionsBody1b: "这更多是关于您对两张图片整体风格相似度的直觉判断——您可以根据自己认为最重要的任何方面来判断（例如颜色、材质、装饰细节、比例，或其他任何让您觉得相关的方面）。",
     instructionsBody2: "点击 <strong>1 到 7</strong> 中的一个数字：1 = 完全不相似 &nbsp;&nbsp; 4 = 中等 / 不确定 &nbsp;&nbsp; 7 = 非常相似",
     instructionsBody3: "确认前可以点击其他数字修改答案——满意后点击<strong>下一题</strong>确认。您也可以随时点击<strong>上一题</strong>返回之前的题目并修改答案。",
     instructionsBody4a: "请尽量使用完整的评分范围，不要总是给同一个分数。",
@@ -571,6 +573,7 @@ const welcomeNode = infoPage(() => `
 const instructionsNode = infoPage(() => `
   <h2>${t("instructionsTitle")}</h2>
   <p>${t("instructionsBody1")}</p>
+  <p>${t("instructionsBody1b")}</p>
   <p>${t("instructionsBody2")}</p>
   <p>${t("instructionsBody3")}</p>
   <p><strong class="emphasis">${t("instructionsBody4a")}</strong> ${t("instructionsBody4b")}</p>
