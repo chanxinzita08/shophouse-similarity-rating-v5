@@ -58,7 +58,6 @@ const STRINGS = {
     yes: "Yes",
     no: "No",
     familiarityQuestion: "Familiarity with Singapore shophouses (1 = not at all, 7 = very familiar)",
-    colorblindQuestion: "Do you have any known color vision deficiency (color blindness)?",
 
     instructionsTitle: "Instructions",
     instructionsBody1: 'On each trial you will see two shophouse facade photographs side by side. Please rate: <em>"How similar are these two shophouse facades as architectural types?"</em>',
@@ -108,7 +107,6 @@ const STRINGS = {
     yes: "是",
     no: "否",
     familiarityQuestion: "您对新加坡店屋（shophouse）的熟悉程度（1 = 完全不熟悉，7 = 非常熟悉）",
-    colorblindQuestion: "您是否有已知的色觉异常（色盲 / 色弱）？",
 
     instructionsTitle: "任务说明",
     instructionsBody1: "每一题您将看到两张店屋立面照片并排显示。请评价：<em>“这两张店屋立面在建筑类型上有多相似？”</em>",
@@ -166,7 +164,6 @@ function attachLangToggle(root, rerender) {
 }
 
 let participantInfo = {};
-let deviceType = "desktop";
 let trialRecords = [];
 let currentIndex = 0;
 let maxReachedIndex = 0;
@@ -174,15 +171,6 @@ let viewedGroup = 0;
 let currentTrialRenderTime = null;
 let jsPsychInstance;
 let practiceCount = 0; // set once trials.csv is loaded
-
-function detectDeviceType() {
-  const ua = navigator.userAgent || "";
-  const isTablet = /iPad|Tablet/i.test(ua) || (/Android/i.test(ua) && !/Mobile/i.test(ua));
-  const isMobile = /Mobi|Android|iPhone/i.test(ua);
-  if (isTablet) return "tablet";
-  if (isMobile) return "mobile";
-  return "desktop";
-}
 
 // =============================================================================
 // CSV parsing (same minimal RFC4180-ish parser used elsewhere in this project)
@@ -280,9 +268,6 @@ function submitCompletion() {
     nationality: participantInfo.nationality || "",
     background: participantInfo.background || "",
     familiarity: participantInfo.familiarity || "",
-    colorblind: participantInfo.colorblind || "",
-    device_type: deviceType,
-    language: currentLang,
   };
   if (!GOOGLE_SHEET_WEB_APP_URL || GOOGLE_SHEET_WEB_APP_URL.startsWith("PASTE_")) {
     console.warn("GOOGLE_SHEET_WEB_APP_URL not configured — completion not sent to server.");
@@ -628,10 +613,6 @@ function renderParticipantInfo(root) {
         <label><input type="radio" name="background" value="no"> ${t("no")}</label>
       </p>
       <p>${t("familiarityQuestion")}<br>${likertRow("familiarity")}</p>
-      <p>${t("colorblindQuestion")}<br>
-        <label><input type="radio" name="colorblind" value="yes" required> ${t("yes")}</label>
-        <label><input type="radio" name="colorblind" value="no"> ${t("no")}</label>
-      </p>
       <button type="submit" class="jspsych-btn">${t("submitBtn")}</button>
     </form>
   `;
@@ -649,7 +630,6 @@ function renderParticipantInfo(root) {
       nationality: fd.get("nationality") || "",
       background: fd.get("background"),
       familiarity: fd.get("familiarity"),
-      colorblind: fd.get("colorblind"),
     };
     jsPsychInstance.finishTrial();
   });
@@ -711,8 +691,6 @@ function allImagePaths(trials) {
 }
 
 async function main() {
-  deviceType = detectDeviceType();
-
   let trials;
   try {
     trials = await loadTrials();

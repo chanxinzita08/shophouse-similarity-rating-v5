@@ -41,8 +41,7 @@ const COLUMNS = [
 
 const COMPLETION_COLUMNS = [
   "participant_id", "version", "completed", "completion_time", "total_answered",
-  "age", "gender", "nationality", "background", "familiarity", "colorblind",
-  "device_type", "language",
+  "age", "gender", "nationality", "background", "familiarity",
 ];
 
 function doPost(e) {
