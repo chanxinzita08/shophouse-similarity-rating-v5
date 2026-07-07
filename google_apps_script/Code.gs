@@ -18,6 +18,15 @@
 //
 // See README.md section "Server-side data collection" for the full
 // copy-paste deployment steps.
+//
+// NOTE on the `completions` tab specifically: ensureHeader_() only writes a
+// header row into a brand-new, empty tab — if `completions` already exists
+// from before this COMPLETION_COLUMNS change (e.g. from earlier testing),
+// its header row will still show the OLD, shorter column list. New rows
+// after this update will have MORE values than the existing header labels.
+// Fix by manually editing that tab's header row to match COMPLETION_COLUMNS
+// below (do not delete the tab if it has real in-progress participants'
+// rows in it already).
 
 const COMPLETIONS_SHEET_NAME = "completions";
 
@@ -32,6 +41,8 @@ const COLUMNS = [
 
 const COMPLETION_COLUMNS = [
   "participant_id", "version", "completed", "completion_time", "total_answered",
+  "age", "gender", "nationality", "background", "familiarity", "colorblind",
+  "device_type", "language",
 ];
 
 function doPost(e) {
